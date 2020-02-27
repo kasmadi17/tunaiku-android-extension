@@ -1,5 +1,9 @@
 package com.tunaikumobile.extensions
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+
 
 /**
  *
@@ -7,3 +11,5 @@ package com.tunaikumobile.extensions
  * Android Engineer
  *
  **/
+
+infix fun ViewGroup.inflate(layoutResId: Int): View = LayoutInflater.from(context).inflate(layoutResId, this, false)

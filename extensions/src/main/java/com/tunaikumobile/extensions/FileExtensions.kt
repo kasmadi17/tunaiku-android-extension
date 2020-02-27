@@ -1,5 +1,8 @@
 package com.tunaikumobile.extensions
 
+import android.util.Base64
+import java.io.File
+
 
 /**
  *
@@ -7,3 +10,11 @@ package com.tunaikumobile.extensions
  * Android Engineer
  *
  **/
+
+
+/**
+ * Change string into date
+ */
+fun File.convertIntoBase64(): String {
+    return Base64.encodeToString(this.readBytes(), Base64.NO_WRAP)
+}
