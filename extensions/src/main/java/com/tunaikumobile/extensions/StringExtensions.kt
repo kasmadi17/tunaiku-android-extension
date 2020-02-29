@@ -3,9 +3,9 @@ package com.tunaikumobile.extensions
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 
 /**
@@ -73,7 +73,7 @@ fun String.removeSpaces(): String {
 /**
  * Change string into date
  */
-//fun String.convertToDate(pattern: String = "yyyy-MM-dd"): Date {
-//    val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-//    return sdf.parse(this)!!
-//}
+fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta") : Date {
+    val zone = DateTimeZone.forID(timeZone)
+    return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
+}
