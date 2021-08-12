@@ -20,8 +20,24 @@ var zone: DateTimeZone = DateTimeZone.forID("Asia/Jakarta")
  * @param targetDate : date that will be compared
  * @author ivanaazuka
  */
-fun Date.getDiffDays(targetDate: Date, timeZone : String = "Asia/Jakarta"): Int {
+fun Date.getDiffDays(targetDate: Date = Date(), timeZone : String = "Asia/Jakarta"): Int {
     return Days.daysBetween(this.convertToDateTime(timeZone), targetDate.convertToDateTime(timeZone)).days
+}
+
+/**
+ * Add or minus days
+ */
+fun Date.plusOrMinusDays(range: Int, pattern: String = "yyyy-MM-dd") : String {
+    val formatter = DateTimeFormat.forPattern(pattern)
+    return formatter.print(this.convertToDateTime().plusDays(range))
+}
+
+/**
+ * Add or minus months
+ */
+fun Date.plusOrMinusMonths(range: Int, pattern: String = "yyyy-MM-dd") : String {
+    val formatter = DateTimeFormat.forPattern(pattern)
+    return formatter.print(this.convertToDateTime().plusMonths(range))
 }
 
 /**

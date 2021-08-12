@@ -1,8 +1,7 @@
 package com.tunaikumobile.extensions
 
-import android.os.Build
-import android.text.Html
 import android.text.Spanned
+import androidx.core.text.HtmlCompat
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import java.util.Date
@@ -39,12 +38,8 @@ fun String.reformatPhoneNumber(): String {
 /**
  * Render HTML string
  */
-fun String.getSpannedText(): Spanned {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
-    } else {
-        Html.fromHtml(this)
-    }
+fun String.convertIntoSpanned(): Spanned {
+    return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_COMPACT)
 }
 
 /**
