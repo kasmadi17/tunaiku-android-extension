@@ -2,6 +2,7 @@ package com.tunaikumobile.extensions
 
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
+import com.tunaikumobile.extensions.Constant.NUMERIC_VALIDATION
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import java.util.Date
@@ -28,11 +29,16 @@ fun <T> String.loadClassOrNull(): Class<out T>? =
  * Reformat phone number
  */
 fun String.reformatPhoneNumber(): String {
-    return when {
-        this.startsWith("+62") -> this.substring(3)
-        this.startsWith("08") -> this.substring(1)
-        else -> this
+    var phoneNumber = when {
+        this.startsWith("0") -> this.replaceFirst("^0+(?!$)".toRegex(), "+62")
+        this.startsWith("+62") -> this
+        this.startsWith("62") -> "+$this"
+        else -> "+62$this"
     }
+    if (phoneNumber.contains("-")) phoneNumber = phoneNumber.trim().replace("-", "")
+    if (phoneNumber.contains(" ")) phoneNumber =
+        phoneNumber.trim().replace("\\s+".toRegex(), "").replace(" +", " ")
+    return phoneNumber
 }
 
 /**
@@ -68,7 +74,25 @@ fun String.removeSpaces(): String {
 /**
  * Change string into date
  */
-fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta") : Date {
+fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
     val zone = DateTimeZone.forID(timeZone)
     return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
+}
+
+/**
+ * Filter tha value into only contains numeric value
+ */
+fun String.filterIntoNumeric(): String {
+    return if (this.isDecimalNumber()) {
+        this.split(".")[0].replace(NUMERIC_VALIDATION, "")
+    } else {
+        this.replace(NUMERIC_VALIDATION, "")
+    }
+}
+
+/**
+ * Filter tha value into only contains numeric value
+ */
+fun String.isDecimalNumber(): Boolean {
+    return this.contains(".")
 }
