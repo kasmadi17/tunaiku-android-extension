@@ -10,6 +10,7 @@ package com.tunaikumobile.extensions
 
 object Constant {
 
-//    Regex
-    val PHONE_NUMBER_VALIDATION = "(\\()?(\\+62|62|08)(\\d{2,3})?\\)?[ .-]?\\d{1}[ .-]?\\d{1,2}[ .-]?\\d{4,6}".toRegex()
+    // Regex
+    val PHONE_NUMBER_VALIDATION = "(\\()?(\\+62|62|08|8)(\\d{2,3})?\\)?[ .-]?\\d{1}[ .-]?\\d{1,2}[ .-]?\\d{4,6}".toRegex()
+    val NUMERIC_VALIDATION = "[^0-9 .]+".toRegex()
 }
