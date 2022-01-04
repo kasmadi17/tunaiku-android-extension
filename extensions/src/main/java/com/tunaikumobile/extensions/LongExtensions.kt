@@ -1,5 +1,9 @@
 package com.tunaikumobile.extensions
 
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import java.util.*
+
 
 /**
  *
@@ -7,3 +11,12 @@ package com.tunaikumobile.extensions
  * Android Engineer
  *
  **/
+
+
+/**
+ * Change long millis into date
+ */
+fun Long.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
+    val zone = DateTimeZone.forID(timeZone)
+    return DateTime(this, zone).toDate()
+}

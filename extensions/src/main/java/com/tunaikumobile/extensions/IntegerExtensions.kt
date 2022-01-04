@@ -7,3 +7,10 @@ package com.tunaikumobile.extensions
  * Android Engineer
  *
  **/
+
+/**
+ * Add plus sign on integer value
+ */
+fun Int.addPlusSign(): String {
+    return if (this >= 0) "+${this}" else "$this"
+}
