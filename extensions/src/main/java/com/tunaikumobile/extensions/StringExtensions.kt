@@ -72,6 +72,13 @@ fun String.removeSpaces(): String {
 }
 
 /**
+ * Remove all new line in a string
+ */
+fun String.removeNewLines(): String {
+    return this.replace("\n", "")
+}
+
+/**
  * Change string into date
  */
 fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
@@ -96,3 +103,48 @@ fun String.filterIntoNumeric(): String {
 fun String.isDecimalNumber(): Boolean {
     return this.contains(".")
 }
+
+/**
+ * Check value is contain with ignored case
+ */
+fun String.isContainWithIgnoredCase(value: String): Boolean {
+    return this.contains(value, true)
+}
+
+/**
+ * Insert char at string
+ */
+fun String.insert(index: Int, char: String): String {
+    return StringBuilder(this).insert(index, char).toString()
+}
+
+/**
+ * Get first name
+ */
+fun String.firstName(): String {
+    val splitName = this.trim().split(" ")
+
+    return if (splitName.size > 1) {
+        splitName[0]
+    } else {
+        this.trim()
+    }
+}
+
+/**
+ * Get last name
+ */
+fun String.lastName(): String {
+    val splitName = this.trim().split(" ")
+    var lastName = ""
+    if (splitName.size > 1) {
+        lastName = this.trim().removePrefix("${splitName[0]} ")
+    }
+
+    return lastName
+}
+
+/**
+ * Check if string value is integer or not
+ */
+fun String.isInteger() : Boolean = this.toIntOrNull() != null
