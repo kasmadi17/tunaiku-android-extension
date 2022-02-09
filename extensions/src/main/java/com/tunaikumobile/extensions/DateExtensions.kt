@@ -88,7 +88,7 @@ fun Date.changeDateFormat(
     newPattern: String = "yyyy-MM-dd",
     timeZone: String = "Asia/Jakarta"
 ): Date {
-    val oldDateTime = this.convertToDateTime()
+    val oldDateTime = this.convertToDateTime(timeZone)
     val formatter = DateTimeFormat.forPattern(newPattern)
     return formatter.print(oldDateTime).convertToDate(newPattern)
 }
