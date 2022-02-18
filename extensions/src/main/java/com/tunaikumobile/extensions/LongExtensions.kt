@@ -20,3 +20,24 @@ fun Long.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/
     val zone = DateTimeZone.forID(timeZone)
     return DateTime(this, zone).toDate()
 }
+
+/**
+ * Change long millis to second
+ */
+fun Long.convertToSecond(): Long {
+    return this/1000
+}
+
+/**
+ * Change long millis to minutes
+ */
+fun Long.convertToMinutes(): Long {
+    return this/(1000*60)
+}
+
+/**
+ * Change long millis to Hour
+ */
+fun Long.convertToHour(): Long {
+    return this/(1000*60*60)
+}
