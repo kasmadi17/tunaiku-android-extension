@@ -10,6 +10,7 @@ import kotlin.reflect.KClass
  *
  **/
 
+@Suppress("UNCHECKED_CAST")
 inline fun <E: Exception> tryCatch(tryBlock: () -> Unit, catchBlock: (E) -> Unit) {
     try {
         tryBlock()

@@ -20,7 +20,7 @@ fun Context.dpToPx(number: Int): Int {
 
 fun View.isViewVisibleInScreen(): Boolean {
     val rect = Rect()
-    return (this.getGlobalVisibleRect(rect)!!
+    return (this.getGlobalVisibleRect(rect)
             && this.height == rect.height()
             && this.width == rect.width())
 }
