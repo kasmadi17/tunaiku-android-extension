@@ -51,8 +51,9 @@ fun String.convertIntoSpanned(): Spanned {
 /**
  * Convert string date to millis
  */
-fun String.convertToMillis(pattern: String = "dd MMM yyyy"): Long {
-    val dateTime = DateTimeFormat.forPattern(pattern)
+fun String.convertToMillis(pattern: String = "dd MMM yyyy", timeZone: String = "Asia/Jakarta"): Long {
+    val zone = DateTimeZone.forID(timeZone)
+    val dateTime = DateTimeFormat.forPattern(pattern).withZone(zone)
     val dateTimeParse = dateTime.parseDateTime(this)
     return dateTimeParse.millis
 }
@@ -147,4 +148,4 @@ fun String.lastName(): String {
 /**
  * Check if string value is integer or not
  */
-fun String.isInteger() : Boolean = this.toIntOrNull() != null
+fun String.isInteger(): Boolean = this.toIntOrNull() != null
