@@ -17,7 +17,7 @@ allprojects {
 Add into your **gradle app**.
 
 ```bash
-implementation "com.github.tunaiku:tunaiku-android-extensions:0.1.2-alpha05"
+implementation "com.github.tunaiku:tunaiku-android-extensions:0.1.2-alpha07"
 ```
 
 
@@ -34,7 +34,7 @@ class MainApp : Application() {
 ```
 
 ## Available Method
-There are some methods which available to implement such as:
+Check out [our wiki](https://github.com/tunaiku/tunaiku-android-extension/wiki#tunaiku-android-extension-wiki) to see the available list extensions :)
 
 
 ## Contributing
