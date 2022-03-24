@@ -16,5 +16,9 @@ import android.util.TypedValue
  */
 
 fun Float.changeIntoDp(context: Context): Float {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, context.resources.displayMetrics)
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        context.resources.displayMetrics
+    )
 }

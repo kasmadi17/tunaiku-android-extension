@@ -11,19 +11,23 @@ import kotlin.reflect.KClass
  **/
 
 @Suppress("UNCHECKED_CAST")
-inline fun <E: Exception> tryCatch(tryBlock: () -> Unit, catchBlock: (E) -> Unit) {
+inline fun <E : Exception> tryCatch(tryBlock: () -> Unit, catchBlock: (E) -> Unit) {
     try {
         tryBlock()
-    }catch (e: Exception) {
+    } catch (e: Exception) {
         e.printStackTrace()
         catchBlock(e as E)
     }
 }
 
-inline fun tryCatch(tryBlock: () -> Unit, catchBlock: (Throwable) -> Unit, vararg exceptions: KClass<out Throwable>){
+inline fun tryCatch(
+    tryBlock: () -> Unit,
+    catchBlock: (Throwable) -> Unit,
+    vararg exceptions: KClass<out Throwable>
+) {
     try {
         tryBlock()
-    }catch (e: Exception) {
+    } catch (e: Exception) {
         val contains = exceptions.find {
             it.isInstance(e)
         }

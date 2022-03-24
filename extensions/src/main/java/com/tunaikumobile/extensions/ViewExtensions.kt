@@ -1,8 +1,6 @@
 package com.tunaikumobile.extensions
 
-import android.content.Context
 import android.graphics.Rect
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 
@@ -13,10 +11,6 @@ import android.view.ViewGroup
  * Android Engineer
  *
  **/
-
-fun Context.dpToPx(number: Int): Int {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, number.toFloat(), resources.displayMetrics).toInt()
-}
 
 fun View.isViewVisibleInScreen(): Boolean {
     val rect = Rect()
@@ -33,10 +27,10 @@ fun View.setMargins(
 ) {
     if (layoutParams is ViewGroup.MarginLayoutParams) {
         val params = layoutParams as ViewGroup.MarginLayoutParams
-        leftMarginDp?.run { params.leftMargin = context.dpToPx(this) }
-        topMarginDp?.run { params.topMargin = context.dpToPx(this) }
-        rightMarginDp?.run { params.rightMargin = context.dpToPx(this) }
-        bottomMarginDp?.run { params.bottomMargin = context.dpToPx(this) }
+        leftMarginDp?.run { params.leftMargin = this.toFloat().changeIntoDp(context).toInt() }
+        topMarginDp?.run { params.topMargin = this.toFloat().changeIntoDp(context).toInt() }
+        rightMarginDp?.run { params.rightMargin = this.toFloat().changeIntoDp(context).toInt() }
+        bottomMarginDp?.run { params.bottomMargin = this.toFloat().changeIntoDp(context).toInt() }
         requestLayout()
     }
 }

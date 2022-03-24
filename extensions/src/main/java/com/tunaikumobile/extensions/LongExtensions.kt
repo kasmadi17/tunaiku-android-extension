@@ -25,19 +25,19 @@ fun Long.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/
  * Change long millis to second
  */
 fun Long.convertToSecond(): Long {
-    return (this/1000) % 60
+    return (this / 1000) % 60
 }
 
 /**
  * Change long millis to minutes
  */
 fun Long.convertToMinutes(): Long {
-    return (this/(1000*60)) % 60
+    return (this / (1000 * 60)) % 60
 }
 
 /**
  * Change long millis to Hour
  */
 fun Long.convertToHour(): Long {
-    return (this/(1000*60*60)) % 24
+    return (this / (1000 * 60 * 60)) % 24
 }
