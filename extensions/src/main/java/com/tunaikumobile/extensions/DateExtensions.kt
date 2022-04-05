@@ -96,16 +96,6 @@ fun Date.changeDateFormat(
     return formatter.print(oldDateTime).convertToDate(newPattern)
 }
 
-fun Date.changeDateFormatWithLocale(
-    pattern: String = "dd MMM YYYY",
-    locale: Locale = Locale("in", "ID")
-): String {
-    val dateTime = this.convertToDateTime()
-    val formatter = DateTimeFormat.forPattern(pattern)
-    val formatterLocale = formatter.withLocale(locale)
-    return formatterLocale.print(dateTime)
-}
-
 /**
  * Convert date to date time
  */
