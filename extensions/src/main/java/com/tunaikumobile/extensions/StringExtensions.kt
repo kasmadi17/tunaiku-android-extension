@@ -6,6 +6,7 @@ import com.tunaikumobile.extensions.Constant.NUMERIC_VALIDATION
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import java.util.Date
+import java.util.Locale
 
 
 /**
@@ -82,9 +83,9 @@ fun String.removeNewLines(): String {
 /**
  * Change string into date
  */
-fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
+fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta", locale: Locale = Locale("in", "ID")): Date {
     val zone = DateTimeZone.forID(timeZone)
-    return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
+    return DateTimeFormat.forPattern(pattern).withLocale(locale).parseDateTime(this).withZone(zone).toDate()
 }
 
 /**

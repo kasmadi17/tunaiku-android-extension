@@ -7,6 +7,7 @@ import org.joda.time.Months
 import org.joda.time.Years
 import org.joda.time.format.DateTimeFormat
 import java.util.Date
+import java.util.Locale
 
 
 /**
@@ -76,9 +77,10 @@ fun Date.plusOrMinusYears(range: Int, pattern: String = "yyyy-MM-dd"): String {
  */
 fun Date.convertToString(
     pattern: String = "yyyy-MM-dd",
-    timeZone: String = "Asia/Jakarta"
+    timeZone: String = "Asia/Jakarta",
+    locale: Locale = Locale("in", "ID")
 ): String {
-    return DateTimeFormat.forPattern(pattern).print(this.convertToDateTime(timeZone))
+    return DateTimeFormat.forPattern(pattern).withLocale(locale).print(this.convertToDateTime(timeZone))
 }
 
 /**
@@ -86,11 +88,22 @@ fun Date.convertToString(
  */
 fun Date.changeDateFormat(
     newPattern: String = "yyyy-MM-dd",
-    timeZone: String = "Asia/Jakarta"
+    timeZone: String = "Asia/Jakarta",
+    locale: Locale = Locale("in", "ID")
 ): Date {
     val oldDateTime = this.convertToDateTime(timeZone)
-    val formatter = DateTimeFormat.forPattern(newPattern)
+    val formatter = DateTimeFormat.forPattern(newPattern).withLocale(locale)
     return formatter.print(oldDateTime).convertToDate(newPattern)
+}
+
+fun Date.changeDateFormatWithLocale(
+    pattern: String = "dd MMM YYYY",
+    locale: Locale = Locale("in", "ID")
+): String {
+    val dateTime = this.convertToDateTime()
+    val formatter = DateTimeFormat.forPattern(pattern)
+    val formatterLocale = formatter.withLocale(locale)
+    return formatterLocale.print(dateTime)
 }
 
 /**
