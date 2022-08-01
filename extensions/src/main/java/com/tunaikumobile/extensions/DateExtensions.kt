@@ -21,6 +21,7 @@ var zone: DateTimeZone = DateTimeZone.forID("Asia/Jakarta")
  * Get the diff days
  */
 fun Date.getDiffDays(targetDate: Date = Date(), timeZone: String = "Asia/Jakarta"): Int {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     return Days.daysBetween(
         this.convertToDateTime(timeZone),
         targetDate.convertToDateTime(timeZone)
@@ -31,6 +32,7 @@ fun Date.getDiffDays(targetDate: Date = Date(), timeZone: String = "Asia/Jakarta
  * Get diff months
  */
 fun Date.getDiffMonths(targetDate: Date = Date(), timeZone: String = "Asia/Jakarta"): Int {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     return Months.monthsBetween(
         this.convertToDateTime(timeZone),
         targetDate.convertToDateTime(timeZone)
@@ -41,6 +43,7 @@ fun Date.getDiffMonths(targetDate: Date = Date(), timeZone: String = "Asia/Jakar
  * Get diff years
  */
 fun Date.getDiffYears(targetDate: Date = Date(), timeZone: String = "Asia/Jakarta"): Int {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     return Years.yearsBetween(
         this.convertToDateTime(timeZone),
         targetDate.convertToDateTime(timeZone)
@@ -78,6 +81,7 @@ fun Date.convertToString(
     pattern: String = "yyyy-MM-dd",
     timeZone: String = "Asia/Jakarta"
 ): String {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     return DateTimeFormat.forPattern(pattern).print(this.convertToDateTime(timeZone))
 }
 
@@ -88,6 +92,7 @@ fun Date.changeDateFormat(
     newPattern: String = "yyyy-MM-dd",
     timeZone: String = "Asia/Jakarta"
 ): Date {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val oldDateTime = this.convertToDateTime(timeZone)
     val formatter = DateTimeFormat.forPattern(newPattern)
     return formatter.print(oldDateTime).convertToDate(newPattern)
@@ -97,6 +102,7 @@ fun Date.changeDateFormat(
  * Convert date to date time
  */
 fun Date.convertToDateTime(timeZone: String = "Asia/Jakarta"): DateTime {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     zone = DateTimeZone.forID(timeZone)
     return DateTime(this).withZone(zone)
 }
