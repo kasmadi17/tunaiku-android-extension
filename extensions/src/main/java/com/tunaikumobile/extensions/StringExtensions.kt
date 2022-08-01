@@ -52,6 +52,7 @@ fun String.convertIntoSpanned(): Spanned {
  * Convert string date to millis
  */
 fun String.convertToMillis(pattern: String = "dd MMM yyyy", timeZone: String = "Asia/Jakarta"): Long {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val zone = DateTimeZone.forID(timeZone)
     val dateTime = DateTimeFormat.forPattern(pattern).withZone(zone)
     val dateTimeParse = dateTime.parseDateTime(this)
@@ -83,6 +84,7 @@ fun String.removeNewLines(): String {
  * Change string into date
  */
 fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val zone = DateTimeZone.forID(timeZone)
     return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
 }

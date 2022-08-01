@@ -17,6 +17,7 @@ import java.util.*
  * Change long millis into date
  */
 fun Long.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asia/Jakarta"): Date {
+    DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val zone = DateTimeZone.forID(timeZone)
     return DateTime(this, zone).toDate()
 }
