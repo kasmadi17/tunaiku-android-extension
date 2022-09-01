@@ -151,3 +151,10 @@ fun String.lastName(): String {
  * Check if string value is integer or not
  */
 fun String.isInteger(): Boolean = this.toIntOrNull() != null
+
+/**
+ * Remove number delimiter
+ */
+fun String.removeNumberDelimiter(): String {
+    return this.replace(".", "")
+}
