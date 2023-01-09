@@ -20,6 +20,16 @@ inline fun <E : Exception> tryCatch(tryBlock: () -> Unit, catchBlock: (E) -> Uni
     }
 }
 
+@Suppress("UNCHECKED_CAST")
+inline fun <T : Throwable> tryCatchThrowable(tryBlock: () -> Unit, catchBlock: (T) -> Unit) {
+    try {
+        tryBlock()
+    } catch (e: Throwable) {
+        e.printStackTrace()
+        catchBlock(e as T)
+    }
+}
+
 inline fun tryCatch(
     tryBlock: () -> Unit,
     catchBlock: (Throwable) -> Unit,
