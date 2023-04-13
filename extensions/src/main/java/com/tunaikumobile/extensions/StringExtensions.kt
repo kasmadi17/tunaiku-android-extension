@@ -167,12 +167,12 @@ fun String.removeNumberDelimiter(): String {
     return this.replace(".", "")
 }
 
-fun Context.copyToClipboard(label: String, content: String) {
-    this.getSystemService(CLIPBOARD_SERVICE).castOrNull<ClipboardManager>()?.let { clipBoard ->
+fun String.copyToClipboard(label: String, context: Context) {
+    context.getSystemService(CLIPBOARD_SERVICE).castOrNull<ClipboardManager>()?.let { clipBoard ->
         val clipData =
             ClipData.newPlainText(
                 label,
-                content
+                this
             )
         clipBoard.setPrimaryClip(clipData)
     }
