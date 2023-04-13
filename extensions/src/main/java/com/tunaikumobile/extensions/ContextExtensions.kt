@@ -8,6 +8,7 @@ import android.content.Context.CLIPBOARD_SERVICE
 import android.net.ConnectivityManager
 import android.os.Build
 import android.provider.Settings
+import androidx.core.content.getSystemService
 import java.io.File
 
 
@@ -58,19 +59,9 @@ fun Context.isRooted(): Boolean {
  */
 
 fun Context.isNetworkConnected(): Boolean {
-    val connectivityManager =
-        this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val activeNetworkInfo = connectivityManager.activeNetworkInfo
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected
-}
-
-fun Context.copyToClipboard(label: String, content: String) {
-    val clipBoardManager =
-        this.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-    val clipData =
-        ClipData.newPlainText(
-            label,
-            content
-        )
-    clipBoardManager.setPrimaryClip(clipData)
+    this.getSystemService(Context.CONNECTIVITY_SERVICE).castOrNull<ConnectivityManager>()?.let { manager ->
+        val activeNetworkInfo = manager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+    return false
 }

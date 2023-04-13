@@ -1,6 +1,11 @@
 package com.tunaikumobile.extensions
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.text.Spanned
+import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 import com.tunaikumobile.extensions.Constant.NUMERIC_VALIDATION
 import org.joda.time.DateTimeZone
@@ -51,7 +56,10 @@ fun String.convertIntoSpanned(): Spanned {
 /**
  * Convert string date to millis
  */
-fun String.convertToMillis(pattern: String = "dd MMM yyyy", timeZone: String = "Asia/Jakarta"): Long {
+fun String.convertToMillis(
+    pattern: String = "dd MMM yyyy",
+    timeZone: String = "Asia/Jakarta"
+): Long {
     DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val zone = DateTimeZone.forID(timeZone)
     val dateTime = DateTimeFormat.forPattern(pattern).withZone(zone)
@@ -157,4 +165,15 @@ fun String.isInteger(): Boolean = this.toIntOrNull() != null
  */
 fun String.removeNumberDelimiter(): String {
     return this.replace(".", "")
+}
+
+fun Context.copyToClipboard(label: String, content: String) {
+    this.getSystemService(CLIPBOARD_SERVICE).castOrNull<ClipboardManager>()?.let { clipBoard ->
+        val clipData =
+            ClipData.newPlainText(
+                label,
+                content
+            )
+        clipBoard.setPrimaryClip(clipData)
+    }
 }
