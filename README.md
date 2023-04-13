@@ -17,7 +17,7 @@ allprojects {
 Add into your **gradle app**.
 
 ```bash
-implementation "com.github.tunaiku:tunaiku-android-extensions:1.0.5"
+implementation "com.github.tunaiku:tunaiku-android-extensions:1.0.6"
 ```
 
 
