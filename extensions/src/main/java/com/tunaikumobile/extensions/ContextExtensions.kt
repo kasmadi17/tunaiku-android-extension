@@ -1,7 +1,10 @@
 package com.tunaikumobile.extensions
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.net.ConnectivityManager
 import android.os.Build
 import android.provider.Settings
@@ -59,4 +62,15 @@ fun Context.isNetworkConnected(): Boolean {
         this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetworkInfo = connectivityManager.activeNetworkInfo
     return activeNetworkInfo != null && activeNetworkInfo.isConnected
+}
+
+fun Context.copyToClipboard(label: String, content: String) {
+    val clipBoardManager =
+        this.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData =
+        ClipData.newPlainText(
+            label,
+            content
+        )
+    clipBoardManager.setPrimaryClip(clipData)
 }
