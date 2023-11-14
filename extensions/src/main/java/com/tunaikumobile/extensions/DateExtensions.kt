@@ -95,7 +95,7 @@ fun Date.changeDateFormat(
     DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val oldDateTime = this.convertToDateTime(timeZone)
     val formatter = DateTimeFormat.forPattern(newPattern)
-    return formatter.print(oldDateTime).convertToDate(newPattern)
+    return formatter.print(oldDateTime).convertToDate(newPattern, timeZone)
 }
 
 /**

@@ -5,11 +5,12 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.text.Spanned
-import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 import com.tunaikumobile.extensions.Constant.NUMERIC_VALIDATION
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.Date
 
 
@@ -95,6 +96,10 @@ fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asi
     DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     val zone = DateTimeZone.forID(timeZone)
     return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
+}
+
+fun String.convertToDate(pattern: String): Date? {
+    return SimpleDateFormat(pattern, Locale.getDefault()).parse(this)
 }
 
 /**
