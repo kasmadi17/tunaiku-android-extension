@@ -112,4 +112,29 @@ class DateExtensionsTest {
         Assert.assertTrue(date1.isWeekend())
         Assert.assertTrue(date2.isWeekend())
     }
+
+    @Test
+    fun getDayOfWeekTest(){
+        Assert.assertTrue(date.getDayOfWeek() == 2)
+    }
+
+    @Test
+    fun isTodayTestFalse(){
+        Assert.assertFalse(date.isToday())
+    }
+
+    @Test
+    fun isTodayTestTrue(){
+        Assert.assertTrue(Date(System.currentTimeMillis()).isToday())
+    }
+
+    @Test
+    fun getDayOfMonth(){
+        Assert.assertTrue(date.getDayOfMonth() == 14)
+    }
+
+    @Test
+    fun getYearTest(){
+        Assert.assertTrue(date.getYearOfDate() == 2023)
+    }
 }
