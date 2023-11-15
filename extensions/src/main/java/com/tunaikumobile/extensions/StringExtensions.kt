@@ -98,10 +98,6 @@ fun String.convertToDate(pattern: String = "yyyy-MM-dd", timeZone: String = "Asi
     return DateTimeFormat.forPattern(pattern).parseDateTime(this).withZone(zone).toDate()
 }
 
-fun String.convertToDate(pattern: String): Date? {
-    return SimpleDateFormat(pattern, Locale.getDefault()).parse(this)
-}
-
 /**
  * Filter tha value into only contains numeric value
  */
