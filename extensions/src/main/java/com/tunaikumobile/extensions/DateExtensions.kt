@@ -4,11 +4,11 @@ import android.os.Build
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.Days
+import org.joda.time.LocalDate
 import org.joda.time.Months
 import org.joda.time.Years
 import org.joda.time.format.DateTimeFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 
 /**
@@ -123,14 +123,38 @@ fun Date.getShortMonth(): String {
 fun Date.getDayAsText(): String {
     val dateTime = DateTime(this)
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        dateTime.dayOfWeek().getAsText(Locale.forLanguageTag(Locale.forLanguageTag("ID").toLanguageTag()))
+        dateTime.dayOfWeek()
+            .getAsText(Locale.forLanguageTag(Locale.forLanguageTag("ID").toLanguageTag()))
     } else {
         dateTime.dayOfWeek.dayOfWeekIDVersion()
     }
 }
 
 /**
- * Checks if the current [DateTime] object represents a weekend day in the specified locale.
+ *
+ * @return The day of the week as an integer.
+ */
+fun Date.getDayOfWeek(): Int {
+    return DateTime(this).dayOfWeek
+}
+
+fun Date.getDayOfMonth(): Int {
+    return DateTime(this).dayOfMonth
+}
+
+fun Date.getYearOfDate():Int{
+    return DateTime(this).year
+}
+
+/**
+ *
+ * @return `true` if the date is today, `false` otherwise.
+ */
+fun Date.isToday(): Boolean {
+    return LocalDate() == LocalDate(this)
+}
+
+/**
  *
  * @return `true` if the day is a weekend day (Saturday or Sunday), `false` otherwise.
  */
