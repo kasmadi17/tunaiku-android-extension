@@ -9,8 +9,6 @@ import androidx.core.text.HtmlCompat
 import com.tunaikumobile.extensions.Constant.NUMERIC_VALIDATION
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
-import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.Date
 
 
