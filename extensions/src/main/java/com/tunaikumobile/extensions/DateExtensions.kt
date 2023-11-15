@@ -1,5 +1,6 @@
 package com.tunaikumobile.extensions
 
+import android.os.Build
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.Days
@@ -7,6 +8,7 @@ import org.joda.time.Months
 import org.joda.time.Years
 import org.joda.time.format.DateTimeFormat
 import java.util.Date
+import java.util.Locale
 
 
 /**
@@ -105,4 +107,34 @@ fun Date.convertToDateTime(timeZone: String = "Asia/Jakarta"): DateTime {
     DateTimeZone.setDefault(DateTimeZone.forID(timeZone))
     zone = DateTimeZone.forID(timeZone)
     return DateTime(this).withZone(zone)
+}
+
+/**
+ * @return A [String] representing the short month text (e.g., "Nov").
+ */
+fun Date.getShortMonth(): String {
+    val dateTime = DateTime(this)
+    return dateTime.monthOfYear().getAsShortText(Locale.getDefault())
+}
+
+/**
+ * @return A [String] representing the day of the week text (e.g., "Sabtu" for the "ID" locale).
+ */
+fun Date.getDayAsText(): String {
+    val dateTime = DateTime(this)
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        dateTime.dayOfWeek().getAsText(Locale.forLanguageTag(Locale.forLanguageTag("ID").toLanguageTag()))
+    } else {
+        dateTime.dayOfWeek.dayOfWeekIDVersion()
+    }
+}
+
+/**
+ * Checks if the current [DateTime] object represents a weekend day in the specified locale.
+ *
+ * @return `true` if the day is a weekend day (Saturday or Sunday), `false` otherwise.
+ */
+fun Date.isWeekend(): Boolean {
+    val dateTime = DateTime(this)
+    return dateTime.dayOfWeek == 6 || dateTime.dayOfWeek == 7
 }

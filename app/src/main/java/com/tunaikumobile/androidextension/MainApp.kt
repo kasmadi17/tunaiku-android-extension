@@ -14,6 +14,6 @@ class MainApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        JodaInitialization.init(this)
+//        JodaInitialization.init(this)
     }
 }
