@@ -142,7 +142,7 @@ fun Date.getDayOfMonth(): Int {
     return DateTime(this).dayOfMonth
 }
 
-fun Date.getYearOfDate():Int{
+fun Date.getYearOfDate(): Int {
     return DateTime(this).year
 }
 
